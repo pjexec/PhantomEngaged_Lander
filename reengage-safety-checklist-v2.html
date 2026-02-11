@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Re-Engagement Safety Checklist | ReEngage Pro</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6; color: #1e3a5f; background: #f8f9fa; padding: 20px;
+        }
+        .container {
+            max-width: 900px; margin: 0 auto; background: white;
+            border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); overflow: hidden;
+        }
+        .header {
+            background: white; padding: 40px 40px 30px; text-align: center;
+            border-bottom: 3px solid #0ea5e9;
+        }
+        .logo { max-width: 400px; height: auto; margin: 0 auto 24px; display: block; }
+        .header h1 { font-size: 28px; font-weight: 600; margin-bottom: 12px; letter-spacing: -0.02em; }
+        .header p { font-size: 15px; color: #64748b; max-width: 650px; margin: 0 auto; }
+
+        /* Loss-frame warning banner */
+        .loss-banner {
+            background: linear-gradient(135deg, #fef2f2, #fff7ed);
+            border-left: 4px solid #dc2626;
+            padding: 20px 40px;
+            margin: 0;
+        }
+        .loss-banner p {
+            font-size: 14px; color: #7c2d12; line-height: 1.7;
+        }
+        .loss-banner strong { color: #dc2626; }
+
+        /* Print buttons */
+        .print-buttons {
+            background: #f1f5f9; padding: 20px 40px; display: flex;
+            gap: 12px; justify-content: center; border-bottom: 1px solid #e2e8f0;
+        }
+        .btn {
+            padding: 12px 24px; border: none; border-radius: 8px; font-size: 14px;
+            font-weight: 600; cursor: pointer; transition: all 0.2s;
+            display: inline-flex; align-items: center; gap: 8px;
+        }
+        .btn-primary { background: #0ea5e9; color: white; }
+        .btn-primary:hover { background: #0284c7; transform: translateY(-1px); }
+        .btn-secondary { background: white; color: #1e3a5f; border: 2px solid #e2e8f0; }
+        .btn-secondary:hover { background: #f8fafc; transform: translateY(-1px); }
+
+        /* Progress indicator */
+        .progress-bar-container {
+            padding: 16px 40px; background: #f8fafc; border-bottom: 1px solid #e2e8f0;
+        }
+        .progress-info { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px; color: #64748b; }
+        .progress-track { height: 8px; background: #e2e8f0; border-radius: 4px; overflow: hidden; }
+        .progress-fill { height: 100%; background: #0ea5e9; border-radius: 4px; transition: width 0.3s; width: 0%; }
+
+        .content { padding: 40px; }
+
+        /* Sections */
+        .section { margin-bottom: 32px; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; }
+        .section-title {
+            font-size: 16px; font-weight: 600; padding: 16px 20px;
+            background: #f8fafc; border-bottom: 1px solid #e2e8f0;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .section-critical .section-title { background: #fef2f2; color: #dc2626; border-bottom-color: #fecaca; }
+
+        /* Checklist items */
+        .checklist-item {
+            padding: 14px 20px; border-bottom: 1px solid #f1f5f9;
+            display: flex; align-items: flex-start; gap: 12px;
+        }
+        .checklist-item:last-child { border-bottom: none; }
+        .checklist-item input[type="checkbox"] {
+            width: 20px; height: 20px; margin-top: 2px; cursor: pointer;
+            accent-color: #0ea5e9; flex-shrink: 0;
+        }
+        .checklist-item label { font-size: 14px; cursor: pointer; flex: 1; }
+        .checklist-item label strong { font-weight: 600; }
+
+        /* Tooltip */
+        .tooltip-trigger {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 18px; height: 18px; border-radius: 50%; background: #e2e8f0;
+            color: #64748b; font-size: 11px; font-weight: 700; cursor: help;
+            margin-left: 6px; flex-shrink: 0; position: relative;
+        }
+        .tooltip-trigger:hover .tooltip-content { display: block; }
+        .tooltip-content {
+            display: none; position: absolute; bottom: calc(100% + 8px);
+            right: -12px; background: #1e293b; color: white;
+            padding: 10px 14px; border-radius: 6px; font-size: 12px; font-weight: 400;
+            line-height: 1.5; width: 280px; max-width: 80vw; z-index: 10;
+        }
+        .tooltip-content::after {
+            content: ''; position: absolute; top: 100%; right: 16px;
+            border: 6px solid transparent;
+            border-top-color: #1e293b;
+        }
+        .tooltip-below .tooltip-content {
+            bottom: auto; top: calc(100% + 8px);
+        }
+        .tooltip-below .tooltip-content::after {
+            top: auto; bottom: 100%;
+            border-top-color: transparent;
+            border-bottom-color: #1e293b;
+        }
+
+        /* IKEA Effect: Input fields requiring user effort */
+        .effort-field {
+            margin-top: 8px; margin-left: 32px;
+        }
+        .effort-field label {
+            display: block; font-size: 12px; color: #64748b; margin-bottom: 4px; font-weight: 500;
+        }
+        .effort-field input[type="text"],
+        .effort-field input[type="number"],
+        .effort-field select {
+            width: 100%; max-width: 300px; padding: 8px 12px; border: 1px solid #e2e8f0;
+            border-radius: 6px; font-size: 13px; color: #1e3a5f; background: #f8fafc;
+            transition: border-color 0.2s;
+        }
+        .effort-field input:focus, .effort-field select:focus {
+            outline: none; border-color: #0ea5e9; background: white;
+        }
+        .effort-field .field-row {
+            display: flex; gap: 12px; flex-wrap: wrap;
+        }
+        .effort-field .field-group { flex: 1; min-width: 120px; }
+
+        /* Critical badge */
+        .critical-badge {
+            display: inline-block; background: #fef2f2; color: #dc2626;
+            font-size: 10px; font-weight: 700; padding: 2px 6px;
+            border-radius: 3px; margin-left: 6px; text-transform: uppercase;
+            letter-spacing: 0.5px; vertical-align: middle;
+        }
+
+        /* Decision Gate */
+        .decision-gate {
+            margin: 32px 0; padding: 30px; background: #f8fafc;
+            border-radius: 8px; border: 1px solid #e2e8f0;
+        }
+        .decision-gate h3 { font-size: 18px; margin-bottom: 8px; text-align: center; }
+        .decision-gate > p { text-align: center; color: #64748b; margin-bottom: 20px; font-size: 14px; }
+        .decision-options { display: flex; flex-direction: column; gap: 12px; }
+        .decision-option {
+            display: flex; align-items: center; gap: 12px; padding: 16px 20px;
+            border-radius: 8px; border: 2px solid #e2e8f0; opacity: 0.4;
+            transition: all 0.3s;
+        }
+        .decision-option.active { opacity: 1; transform: scale(1.02); }
+        .decision-safe { border-color: #86efac; background: #f0fdf4; }
+        .decision-safe.active { border-color: #22c55e; box-shadow: 0 4px 12px rgba(34,197,94,0.15); }
+        .decision-caution { border-color: #fde68a; background: #fffbeb; }
+        .decision-caution.active { border-color: #f59e0b; box-shadow: 0 4px 12px rgba(245,158,11,0.15); }
+        .decision-stop { border-color: #fecaca; background: #fef2f2; }
+        .decision-stop.active { border-color: #ef4444; box-shadow: 0 4px 12px rgba(239,68,68,0.15); }
+        .status-indicator {
+            width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0;
+        }
+        .decision-safe .status-indicator { background: #22c55e; }
+        .decision-caution .status-indicator { background: #f59e0b; }
+        .decision-stop .status-indicator { background: #ef4444; }
+        .status-text { font-size: 14px; font-weight: 500; }
+
+        /* Caution state expanded messaging */
+        .caution-detail {
+            display: none; margin-top: 12px; padding: 16px;
+            background: #fffbeb; border-radius: 6px; border: 1px solid #fde68a;
+            font-size: 13px; line-height: 1.7; color: #92400e;
+        }
+        .caution-detail.visible { display: block; }
+        .caution-detail p { margin-bottom: 8px; }
+        .caution-detail p:last-child { margin-bottom: 0; }
+
+        /* Score display */
+        .score-display {
+            text-align: center; margin: 20px 0 0; padding: 16px;
+            background: white; border-radius: 8px; border: 1px solid #e2e8f0;
+        }
+        .score-number { font-size: 36px; font-weight: 700; color: #1e3a5f; }
+        .score-label { font-size: 13px; color: #64748b; }
+
+        /* Goldilocks CTA section */
+        .next-steps {
+            margin-top: 32px; padding: 30px; background: #f0f9ff;
+            border-radius: 8px; border: 1px solid #bae6fd;
+        }
+        .next-steps h3 { font-size: 18px; margin-bottom: 6px; text-align: center; }
+        .next-steps .next-steps-intro {
+            text-align: center; color: #64748b; margin-bottom: 24px; font-size: 14px;
+        }
+        .service-options { display: flex; flex-direction: column; gap: 16px; }
+
+        .service-card {
+            display: block; padding: 24px; background: white; border: 2px solid #e2e8f0;
+            border-radius: 10px; text-decoration: none; color: inherit;
+            transition: all 0.2s; position: relative;
+        }
+        .service-card:hover { border-color: #0ea5e9; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+        .service-card h4 { font-size: 16px; margin-bottom: 6px; color: #1e3a5f; }
+        .service-card p { font-size: 13px; color: #64748b; margin-bottom: 12px; line-height: 1.6; }
+        .service-card-cta {
+            display: inline-block; font-size: 13px; font-weight: 600; color: #0ea5e9;
+        }
+
+        /* Highlighted middle option (DFY Sprint) */
+        .service-card.recommended {
+            border-color: #0ea5e9; background: linear-gradient(135deg, #f0f9ff, #ffffff);
+            box-shadow: 0 4px 16px rgba(14,165,233,0.12);
+        }
+        .service-card.recommended:hover { box-shadow: 0 8px 24px rgba(14,165,233,0.2); }
+        .recommended-badge {
+            position: absolute; top: -12px; right: 20px;
+            background: #0ea5e9; color: white; font-size: 11px; font-weight: 700;
+            padding: 4px 12px; border-radius: 4px; letter-spacing: 0.5px;
+        }
+
+        .footer {
+            background: #f8fafc; padding: 20px 40px; text-align: center;
+            font-size: 13px; color: #94a3b8; border-top: 1px solid #e2e8f0;
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .content, .loss-banner, .print-buttons { padding-left: 20px; padding-right: 20px; }
+            .header { padding: 24px 20px; }
+            .effort-field .field-row { flex-direction: column; }
+        }
+        @media print {
+            .print-buttons, .btn { display: none !important; }
+            .container { box-shadow: none; }
+            .decision-option { opacity: 1 !important; }
+            .effort-field input, .effort-field select { border: 1px solid #ccc !important; background: white !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Re-Engagement Campaign Safety Checklist</h1>
+            <p>30 safeguards that separate campaigns that recover revenue from campaigns that destroy sender reputation. Complete each section honestly — your deliverability depends on it.</p>
+        </div>
+
+        <!-- Loss-frame banner -->
+        <div class="loss-banner">
+            <p><strong>⚠️ Without a structured safety process, re-engagement campaigns routinely trigger spam traps, spike complaint rates above ISP thresholds, and permanently damage sender reputation.</strong> The result: your emails to <em>engaged</em> subscribers start landing in spam too. This checklist exists to prevent that outcome. Every unchecked item below is a specific way your campaign can fail.</p>
+        </div>
+
+        <!-- Print/Save buttons -->
+        <div class="print-buttons">
+            <button class="btn btn-primary" onclick="savePDF()">📄 Save as PDF</button>
+            <button class="btn btn-secondary" onclick="window.print()">🖨️ Print Checklist</button>
+            <button class="btn btn-secondary" onclick="resetChecklist()">↺ Reset All</button>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-bar-container">
+            <div class="progress-info">
+                <span id="progress-text">0 of 30 items completed</span>
+                <span id="progress-pct">0%</span>
+            </div>
+            <div class="progress-track">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+        </div>
+
+        <div class="content">
+
+            <!-- Section 1: Data & Engagement Signal Readiness -->
+            <div class="section">
+                <h2 class="section-title">📊 1. Data & Engagement Signal Readiness</h2>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="item-1-1">
+                    <label for="item-1-1"><strong>Defined "unengaged"</strong> using a specific, defensible time window — not a guess</label>
+                    <span class="tooltip-trigger tooltip-below">?
+                        <span class="tooltip-content">Common thresholds: 90-day, 180-day, or 365-day windows of no opens AND no clicks. The right window depends on your sending frequency and product purchase cycle.</span>
+                    </span>
+                </div>
+                <div class="effort-field">
+                    <label>Your inactivity threshold:</label>
+                    <div class="field-row">
+                        <div class="field-group">
+                            <input type="number" id="input-inactivity-days" placeholder="e.g. 180" min="30" max="730"> days
+                        </div>
+                        <div class="field-group">
+                            <select id="input-inactivity-signal">
+                                <option value="">Signal used…</option>
+                                <option value="opens-clicks">No opens AND no clicks</option>
+                                <option value="clicks-only">No clicks (ignoring opens)</option>
+                                <option value="purchase">No purchases</option>
+                                <option value="custom">Custom definition</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="item-1-2">
+                    <label for="item-1-2"><strong>Accounted for Apple Mail Privacy Protection</strong> — identified phantom-engaged subscribers who show opens but never actually read</label>
+                    <span class="tooltip-trigger">?
+                        <span class="tooltip-content">Apple MPP auto-fires open pixels, making ~50% of "opens" unreliable. Click-based signals and purchase activity are the only trustworthy engagement indicators for Apple Mail users.</span>
+                    </span>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="item-1-3">
+                    <label for="item-1-3"><strong>Engagement data is from your own ESP</strong> — not imported from a third party or based on assumptions</label>
+                    <span class="tooltip-trigger">?
+                        <span class="tooltip-content">Re-engagement must be based on your actual sending data. Imported engagement data from a previous ESP may be incomplete or use different tracking methods.</span>
+                    </span>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="item-1-4">
+                    <label for="item-1-4"><strong>Baseline engagement rates documented</strong> — you know your current open, click, bounce, and complaint rates before starting</label>
+                </div>
+                <div class="effort-field">
+                    <label>Current baseline rates:</label>
+                    <div class="field-row">
+                        <div class="field-group">
+                            <input type="text" id="input-open-rate" placeholder="Open rate (e.g. 22%)">
+                        </div>
+                        <div class="field-group">
+                            <input type="text" id="input-click-rate" placeholder="Click rate (e.g. 2.8%)">
+                        </div>
+                        <div class="field-group">
+                            <input type="text" id="input-complaint-rate" placeholder="Complaint rate (e.g. 0.05%)">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="item-1-5">
+                    <label for="item-1-5"><strong>Unengaged list size documented</strong> — you know exactly how many subscribers you're targeting</label>
+                </div>
+                <div class="effort-field">
+                    <label>Your unengaged segment size:</label>
+                    <input type="number" id="input-list-size" placeholder="e.g. 45000">
+                </div>
+            </div>
+
+            <!-- Section 2: Suppression & Segmentation Guardrails -->
+            <div class="section">
+                <h2 class="section-title">🛡️ 2. Suppression & Segmentation Guardrails</h2>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="item-2-1">
+                    <label for="item-2-1"><strong>Role-based addresses removed</strong> (info@, admin@, support@, etc.) — these are spam trap magnets</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="item-2-2">
+                    <label for="item-2-2"><strong>Hard bounces fully removed</strong> from your re-engagement target list <span class="critical-badge">Critical</span></label>
+                    <span class="tooltip-trigger">?
+                        <span class="tooltip-content">Hard bounces sent to dormant addresses can hit recycled spam traps. Even one trap hit tells ISPs you're not maintaining list hygiene. This alone can tank your deliverability.</span>
+                    </span>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="item-2-3">
+                    <label for="item-2-3"><strong>Spam complainers permanently suppressed</strong> <span class="critical-badge">Critical</span></label>
+                    <span class="tooltip-trigger">?
+                        <span class="tooltip-content">Previous spam complainers who receive another email will almost certainly complain again. One complaint per 1,000 emails is Google's threshold — exceeded means spam folder.</span>
+                    </span>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="item-2-4">
+                    <label for="item-2-4"><strong>Previously unsubscribed contacts excluded</strong> — zero tolerance for re-mailing opt-outs <span class="critical-badge">Critical</span></label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="item-2-5">
+                    <label for="item-2-5"><strong>Email verification run</strong> on the unengaged segment to catch syntax errors, disposable addresses, and known traps</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="item-2-6">
+                    <label for="item-2-6"><strong>Re-engagement sends are isolated</strong> from your regular email program — not mixed into normal campaigns</label>
+                    <span class="tooltip-trigger">?
+                        <span class="tooltip-content">This is the #1 mistake. Sending re-engagement emails through the same channel as your engaged subscribers' emails means poor metrics from unengaged contacts drag down deliverability for everyone.</span>
+                    </span>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="item-2-7">
+                    <label for="item-2-7"><strong>Segments tiered by recency</strong> — most recently active unengaged contacts contacted first, oldest last</label>
+                </div>
+            </div>
+
+            <!-- Section 3: Infrastructure & Authentication -->
+            <div class="section">
+                <h2 class="section-title">⚙️ 3. Infrastructure & Authentication</h2>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="item-3-1">
+                    <label for="item-3-1"><strong>SPF, DKIM, and DMARC properly configured</strong> and verified <span class="critical-badge">Critical</span></label>
+                    <span class="tooltip-trigger">?
+                        <span class="tooltip-content">Authentication failures + dormant contacts = immediate spam folder. Check DMARC at dmarcian.com or mxtoolbox.com. DMARC should be at minimum p=none with reporting enabled.</span>
+                    </span>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="item-3-2">
+                    <label for="item-3-2"><strong>Sending domain has established reputation</strong> (active sending history of 30+ days)</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="item-3-3">
+                    <label for="item-3-3"><strong>Google Postmaster Tools configured</strong> for your sending domain</label>
+                    <span class="tooltip-trigger">?
+                        <span class="tooltip-content">GPT is your real-time view into how Google sees your sending reputation. Without it, you're flying blind on the platform that handles ~60% of consumer email.</span>
+                    </span>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="item-3-4">
+                    <label for="item-3-4"><strong>Not sending from a cold or brand-new domain</strong> <span class="critical-badge">Critical</span></label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="item-3-5">
+                    <label for="item-3-5"><strong>Dedicated IP or sub-domain isolation</strong> in place so re-engagement metrics don't contaminate your main sending reputation</label>
+                </div>
+                <div class="effort-field">
+                    <label>Your sending configuration:</label>
+                    <div class="field-row">
+                        <div class="field-group">
+                            <input type="text" id="input-domain" placeholder="Sending domain (e.g. mail.yourstore.com)">
+                        </div>
+                        <div class="field-group">
+                            <select id="input-ip-type">
+                                <option value="">IP setup…</option>
+                                <option value="shared">Shared IP (ESP default)</option>
+                                <option value="dedicated">Dedicated IP</option>
+                                <option value="subdomain">Subdomain isolation</option>
+                                <option value="both">Dedicated IP + Subdomain</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="item-3-6">
+                    <label for="item-3-6"><strong>Return-path and bounce handling</strong> configured and functional</label>
+                </div>
+            </div>
+
+            <!-- Section 4: Volume & Cadence Safety -->
+            <div class="section">
+                <h2 class="section-title">📈 4. Volume & Cadence Safety</h2>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="item-4-1">
+                    <label for="item-4-1"><strong>Daily send volume calculated</strong> — not exceeding safe thresholds for your domain reputation</label>
+                </div>
+                <div class="effort-field">
+                    <label>Planned daily volume:</label>
+                    <div class="field-row">
+                        <div class="field-group">
+                            <input type="number" id="input-daily-volume" placeholder="Emails per day (e.g. 200)">
+                        </div>
+                        <div class="field-group">
+                            <input type="text" id="input-total-days" placeholder="Campaign length (e.g. 30 days)">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="item-4-2">
+                    <label for="item-4-2"><strong>Sending spread across the day</strong> — not bulk-blasted in a single batch</label>
+                    <span class="tooltip-trigger">?
+                        <span class="tooltip-content">Human-like sending patterns (spread over hours, not seconds) look legitimate to ISPs. Sudden volume spikes to dormant addresses are a classic spam signal.</span>
+                    </span>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="item-4-3">
+                    <label for="item-4-3"><strong>Volume ramp-up plan</strong> in place — starting low and increasing gradually based on response</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="item-4-4">
+                    <label for="item-4-4"><strong>Spacing between re-engagement touches</strong> is 5+ days minimum per subscriber</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="item-4-5">
+                    <label for="item-4-5"><strong>Maximum re-engagement attempts defined</strong> — you've set a cap on how many times you'll try before sunsetting</label>
+                </div>
+                <div class="effort-field">
+                    <label>Your max attempts before sunset:</label>
+                    <input type="number" id="input-max-attempts" placeholder="e.g. 3" min="1" max="10" style="max-width: 120px;">
+                </div>
+            </div>
+
+            <!-- Section 5: Content & Intent Sanity Check -->
+            <div class="section">
+                <h2 class="section-title">✉️ 5. Content & Intent Sanity Check</h2>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="item-5-1">
+                    <label for="item-5-1"><strong>Subject lines clearly signal re-engagement intent</strong> — not deceptive or urgency-faking</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="item-5-2">
+                    <label for="item-5-2"><strong>Unsubscribe link is prominent</strong> and working — not buried, not broken</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="item-5-3">
+                    <label for="item-5-3"><strong>Offer or value proposition</strong> is genuine and relevant to someone who hasn't opened in months</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="item-5-4">
+                    <label for="item-5-4"><strong>From name and reply-to</strong> are recognizable — the recipient should know who this is from</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="item-5-5">
+                    <label for="item-5-5"><strong>Email tested across major clients</strong> (Gmail, Yahoo, Outlook, Apple Mail) for rendering and deliverability</label>
+                </div>
+            </div>
+
+            <!-- Section 6: Stop Conditions (Critical) -->
+            <div class="section section-critical">
+                <h2 class="section-title">🚨 6. Stop Conditions — Non-Negotiable Safeguards</h2>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="item-6-1">
+                    <label for="item-6-1"><strong>Complaint rate auto-pause threshold defined</strong> — campaign pauses immediately if complaints exceed threshold <span class="critical-badge">Critical</span></label>
+                    <span class="tooltip-trigger">?
+                        <span class="tooltip-content">Google's threshold is 0.1% complaint rate. Exceeding 0.3% can cause permanent domain reputation damage. Your auto-pause should trigger well before that.</span>
+                    </span>
+                </div>
+                <div class="effort-field">
+                    <label>Your complaint rate auto-pause threshold:</label>
+                    <input type="text" id="input-complaint-threshold" placeholder="e.g. 0.08%" style="max-width: 120px;">
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="item-6-2">
+                    <label for="item-6-2"><strong>Bounce rate auto-pause threshold defined</strong> — hard bounce rate above threshold triggers immediate stop <span class="critical-badge">Critical</span></label>
+                </div>
+                <div class="effort-field">
+                    <label>Your bounce rate auto-pause threshold:</label>
+                    <input type="text" id="input-bounce-threshold" placeholder="e.g. 2%" style="max-width: 120px;">
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="item-6-3">
+                    <label for="item-6-3"><strong>Minimum engagement requirement</strong> — you'll sunset contacts that don't respond within defined attempts <span class="critical-badge">Critical</span></label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="item-6-4">
+                    <label for="item-6-4"><strong>Real-time monitoring responsibility assigned</strong> — a specific person checks metrics daily during active campaigns <span class="critical-badge">Critical</span></label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="item-6-5">
+                    <label for="item-6-5"><strong>Committed to acting on warning signs</strong> — you will pause/stop even if it means not reaching the full list <span class="critical-badge">Critical</span></label>
+                </div>
+            </div>
+
+            <!-- Decision Gate -->
+            <div class="decision-gate">
+                <h3>Your Readiness Assessment</h3>
+                <p>Based on your responses above:</p>
+
+                <div class="score-display">
+                    <div class="score-number" id="score-number">0/30</div>
+                    <div class="score-label">items completed · <span id="critical-score">0/10</span> critical safeguards in place</div>
+                </div>
+
+                <div class="decision-options" style="margin-top: 20px;">
+                    <div class="decision-option decision-safe" id="status-safe">
+                        <div class="status-indicator"></div>
+                        <div class="status-text">✅ Safe to proceed — all critical safeguards are in place</div>
+                    </div>
+
+                    <div class="decision-option decision-caution" id="status-caution">
+                        <div class="status-indicator"></div>
+                        <div>
+                            <div class="status-text">⚠️ Gaps detected — you can proceed, but you're accepting real risk</div>
+                            <div class="caution-detail" id="caution-detail">
+                                <p>You have the basic structure but missing safeguards mean you're relying on luck, not process. Every unchecked item above is a specific failure mode that has destroyed sender reputation for other email marketers.</p>
+                                <p>You have two options: close the gaps yourself (this checklist shows you exactly what needs fixing), or bring in someone who has done this across hundreds of campaigns and knows exactly where things break.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="decision-option decision-stop" id="status-stop">
+                        <div class="status-indicator"></div>
+                        <div class="status-text">⛔ Do not proceed — critical safeguards are missing. Sending now risks permanent damage.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Goldilocks CTA Architecture -->
+            <div class="next-steps">
+                <h3>What Happens Next</h3>
+                <p class="next-steps-intro">You've just mapped the full scope of a safe re-engagement campaign. Here are your options:</p>
+
+                <div class="service-options">
+                    <!-- Option 1: DIY (Conservative path) -->
+                    <a href="#" class="service-card" onclick="return false;" style="cursor: default;">
+                        <h4>Option 1: Execute This Yourself</h4>
+                        <p>Use this checklist as your operational playbook. Close every gap, configure the infrastructure, set up monitoring, manage daily volume pacing, and watch metrics in real time. It's thorough work — this checklist exists because cutting corners is how campaigns fail.</p>
+                        <span class="service-card-cta" style="color: #64748b;">← You're already on this path</span>
+                    </a>
+
+                    <!-- Option 2: DFY Sprint (Smart middle - recommended) -->
+                    <a href="https://dfy.reengage.pro/" target="_blank" class="service-card recommended">
+                        <div class="recommended-badge">MOST POPULAR</div>
+                        <h4>Option 2: Done-For-You Re-Engagement Sprint</h4>
+                        <p>In 30 days, we execute everything in this checklist on your behalf — segmentation, infrastructure audit, volume pacing, real-time monitoring, and optimization. You've already done the diagnostic work above. We turn it into results, personally.</p>
+                        <span class="service-card-cta">Learn about the 30-day sprint →</span>
+                    </a>
+
+                    <!-- Option 3: Platform (Future path) -->
+                    <a href="https://reengage.pro/" target="_blank" class="service-card">
+                        <h4>Option 3: ReEngage Pro Platform (Waitlist)</h4>
+                        <p>Automated re-engagement with built-in safety rails — AI-powered volume pacing, real-time bounce/complaint monitoring, and auto-pause protection. Everything this checklist covers, handled by software.</p>
+                        <span class="service-card-cta">Join the waitlist →</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer">
+            ReEngage Pro — Professional re-engagement, done safely.
+        </div>
+    </div>
+
+    <script>
+        const CRITICAL_ITEMS = [
+            'item-2-2', 'item-2-3', 'item-2-4', 'item-3-1', 'item-3-4',
+            'item-6-1', 'item-6-2', 'item-6-3', 'item-6-4', 'item-6-5'
+        ];
+
+        const INPUT_FIELDS = [
+            'input-inactivity-days', 'input-inactivity-signal', 'input-open-rate',
+            'input-click-rate', 'input-complaint-rate', 'input-list-size',
+            'input-domain', 'input-ip-type', 'input-daily-volume', 'input-total-days',
+            'input-max-attempts', 'input-complaint-threshold', 'input-bounce-threshold'
+        ];
+
+        function getAllCheckboxIds() {
+            return Array.from(document.querySelectorAll('input[type="checkbox"]')).map(cb => cb.id);
+        }
+
+        function getCheckedCount() {
+            const all = getAllCheckboxIds();
+            return all.filter(id => document.getElementById(id)?.checked).length;
+        }
+
+        function getCriticalCheckedCount() {
+            return CRITICAL_ITEMS.filter(id => document.getElementById(id)?.checked).length;
+        }
+
+        function calculateStatus() {
+            const criticalUnchecked = CRITICAL_ITEMS.some(id => {
+                const cb = document.getElementById(id);
+                return cb && !cb.checked;
+            });
+            if (criticalUnchecked) return 'stop';
+
+            const allIds = getAllCheckboxIds();
+            const allChecked = allIds.every(id => document.getElementById(id)?.checked);
+            if (allChecked) return 'safe';
+
+            return 'caution';
+        }
+
+        function updateUI() {
+            const status = calculateStatus();
+            const total = getAllCheckboxIds().length;
+            const checked = getCheckedCount();
+            const criticalChecked = getCriticalCheckedCount();
+            const pct = total > 0 ? Math.round((checked / total) * 100) : 0;
+
+            // Progress bar
+            document.getElementById('progress-fill').style.width = pct + '%';
+            document.getElementById('progress-text').textContent = checked + ' of ' + total + ' items completed';
+            document.getElementById('progress-pct').textContent = pct + '%';
+
+            // Score
+            document.getElementById('score-number').textContent = checked + '/' + total;
+            document.getElementById('critical-score').textContent = criticalChecked + '/10';
+
+            // Decision gate
+            document.querySelectorAll('.decision-option').forEach(o => o.classList.remove('active'));
+            const active = document.getElementById('status-' + status);
+            if (active) active.classList.add('active');
+
+            // Caution detail
+            const cautionDetail = document.getElementById('caution-detail');
+            if (status === 'caution') {
+                cautionDetail.classList.add('visible');
+            } else {
+                cautionDetail.classList.remove('visible');
+            }
+
+            // Save
+            saveState();
+        }
+
+        function saveState() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(cb => localStorage.setItem(cb.id, cb.checked));
+            INPUT_FIELDS.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) localStorage.setItem(id, el.value);
+            });
+        }
+
+        function loadState() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(cb => {
+                const saved = localStorage.getItem(cb.id);
+                if (saved !== null) cb.checked = saved === 'true';
+            });
+            INPUT_FIELDS.forEach(id => {
+                const el = document.getElementById(id);
+                const saved = localStorage.getItem(id);
+                if (el && saved !== null) el.value = saved;
+            });
+        }
+
+        function savePDF() { window.print(); }
+
+        function resetChecklist() {
+            if (confirm('Reset all checkboxes and inputs? This cannot be undone.')) {
+                localStorage.clear();
+                location.reload();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadState();
+            updateUI();
+            document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+                cb.addEventListener('change', updateUI);
+            });
+            INPUT_FIELDS.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.addEventListener('change', saveState);
+                if (el) el.addEventListener('input', saveState);
+            });
+        });
+    </script>
+</body>
+</html>
