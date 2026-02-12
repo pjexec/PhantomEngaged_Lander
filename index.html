@@ -725,19 +725,78 @@
             color: var(--teal-hover);
         }
 
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 640px) {
+        /* ===== RESPONSIVE — TABLET ===== */
+        @media (max-width: 768px) {
+            section {
+                padding: 64px 0;
+            }
+
             .hero {
-                padding: 120px 0 72px;
+                padding: 140px 0 80px;
+            }
+        }
+
+        /* ===== RESPONSIVE — MOBILE ===== */
+        @media (max-width: 640px) {
+
+            /* — Nav — */
+            nav .container {
+                height: 54px;
+            }
+
+            .nav-brand {
+                font-size: 0.95rem;
+            }
+
+            .nav-right {
+                gap: 12px;
+            }
+
+            .nav-link {
+                font-size: 0.82rem;
+            }
+
+            .nav-right .btn-primary {
+                padding: 8px 14px;
+                font-size: 0.8rem;
+            }
+
+            .nav-right .btn-primary svg {
+                width: 14px;
+                height: 14px;
+            }
+
+            /* — Hero — */
+            .hero {
+                padding: 110px 0 64px;
             }
 
             .hero::before {
                 display: none;
             }
 
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem !important;
+                margin-bottom: 28px !important;
+            }
+
+            .hero .btn-primary {
+                display: flex;
+                justify-content: center;
+                width: 100%;
+                padding: 16px 24px;
+                font-size: 1rem;
+            }
+
             .hero-meta {
-                flex-wrap: wrap;
-                gap: 8px;
+                flex-direction: column;
+                gap: 4px;
+                margin-top: 28px;
+                padding-top: 20px;
             }
 
             .hero-meta .divider {
@@ -746,33 +805,180 @@
 
             .hero-meta span {
                 display: block;
+                font-size: 0.84rem;
             }
 
-            .nav-right {
-                gap: 16px;
+            /* — Sections — */
+            section {
+                padding: 48px 0;
             }
 
-            .btn-primary {
-                padding: 14px 24px;
+            h2 {
+                font-size: 1.35rem;
+                margin-bottom: 20px;
+            }
+
+            p {
+                font-size: 0.98rem;
+            }
+
+            /* — Callouts — */
+            .callout,
+            .callout-dark {
+                padding: 20px 20px;
+                margin: 24px 0;
+            }
+
+            .callout p,
+            .callout-dark p {
                 font-size: 0.95rem;
             }
 
+            /* — Diagram — */
+            .overlap-diagram {
+                margin: 32px 0;
+            }
+
             .diagram-bar {
-                height: 56px;
+                height: 52px;
             }
 
             .diagram-bar span {
-                font-size: 0.68rem;
+                font-size: 0.62rem;
+                letter-spacing: 0.03em;
+            }
+
+            .diagram-caption {
+                font-size: 0.8rem;
+            }
+
+            /* — Outcomes — */
+            .outcomes-grid {
+                margin: 28px 0;
             }
 
             .outcome-item {
-                grid-template-columns: 1fr;
-                gap: 12px;
+                grid-template-columns: 36px 1fr;
+                gap: 14px;
+                padding: 22px 0;
+            }
+
+            .outcome-letter {
+                width: 36px;
+                height: 36px;
+                font-size: 1rem;
+            }
+
+            .outcome-text h3 {
+                font-size: 1rem;
+            }
+
+            .outcome-text p {
+                font-size: 0.93rem;
+            }
+
+            .outcomes .btn-secondary {
+                display: flex;
+                justify-content: center;
+                width: 100%;
+            }
+
+            /* — Author — */
+            .author-card {
+                padding: 24px 20px;
+            }
+
+            .author-name {
+                font-size: 1.1rem;
+            }
+
+            .author-card p {
+                font-size: 0.93rem;
+            }
+
+            /* — FAQ — */
+            .faq-item summary {
+                font-size: 0.98rem;
+                padding: 18px 0;
+                min-height: 44px;
+            }
+
+            .faq-item p {
+                font-size: 0.93rem;
+                padding: 0 0 20px;
+            }
+
+            /* — CTA — */
+            .cta-section h2 {
+                font-size: 1.4rem;
+            }
+
+            .cta-section .cta-body {
+                font-size: 0.98rem;
+                margin: 0 auto 28px;
+            }
+
+            .cta-section .btn-primary {
+                display: flex;
+                justify-content: center;
+                width: 100%;
+            }
+
+            .cta-section .cta-note {
+                font-size: 0.82rem;
+                margin-top: 16px;
+            }
+
+            /* — Footer — */
+            footer {
+                padding: 28px 0;
             }
 
             footer .container {
                 flex-direction: column;
                 text-align: center;
+                gap: 8px;
+            }
+
+            .footer-copy,
+            .footer-link {
+                font-size: 0.8rem;
+            }
+        }
+
+        /* ===== RESPONSIVE — SMALL PHONES ===== */
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            .hero {
+                padding: 100px 0 56px;
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.25rem;
+            }
+
+            .diagram-bar {
+                height: 46px;
+            }
+
+            .diagram-bar span {
+                font-size: 0.56rem;
+            }
+
+            .outcome-item {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .nav-link {
+                display: none;
             }
         }
     </style>
