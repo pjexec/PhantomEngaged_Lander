@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phantom Engaged — The Subscribers Your Dashboard Can't Classify</title>
+    <meta name="description"
+        content="When privacy protections break open tracking, a large portion of your list becomes impossible to classify. Phantom Engaged names that problem and gives you a framework for what to do about it.">
+    <meta name="author" content="Chuck Mullaney">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Phantom Engaged — The Subscribers Your Dashboard Can't Classify">
+    <meta property="og:description"
+        content="A position paper on the invisible overlap between engaged and disengaged email subscribers created by modern privacy protections.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://phantomengaged.com/">
+    <meta property="og:image" content="https://phantomengaged.com/social-share1.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Phantom Engaged — The Subscribers Your Dashboard Can't Classify">
+    <meta name="twitter:description"
+        content="A position paper on the invisible overlap between engaged and disengaged email subscribers created by modern privacy protections.">
+    <meta name="twitter:image" content="https://phantomengaged.com/social-share1.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+        <div class="topbar__inner">
+            <a href="/" class="topbar__brand">Phantom <em>Engaged</em></a>
+            <div class="topbar__actions">
+                <a href="#problem" class="topbar__link">The Problem</a>
+                <a href="#framework" class="topbar__link">Framework</a>
+                <a href="#author" class="topbar__link">Author</a>
+                <a href="https://expert.email" target="_blank" rel="noopener" class="topbar__link">Expert.Email</a>
+                <a href="../Phantom_Engaged_Whitepaper_Full.pdf" download class="btn btn--primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                    </svg>
+                    Download PDF
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero__bg">
+            <div class="hero__gradient hero__gradient--teal"></div>
+            <div class="hero__gradient hero__gradient--purple"></div>
+            <div class="hero__grid"></div>
+        </div>
+        <div class="hero__content">
+            <div class="hero__badge reveal">Position Paper · v4.0 · February 2026</div>
+            <h1 class="hero__title reveal reveal-delay-1">
+                Your opens look healthy.<br>Your list <em>isn't</em>.
+            </h1>
+            <p class="hero__sub reveal reveal-delay-2">
+                Privacy protections made open rates unreliable. This paper names the classification problem that creates
+                — and gives you a framework for operating inside it.
+            </p>
+            <div class="hero__cta-row reveal reveal-delay-3">
+                <a href="../Phantom_Engaged_Whitepaper_Full.pdf" download class="btn btn--primary btn--large">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                    </svg>
+                    Get the Position Paper
+                </a>
+                <a href="#problem" class="btn btn--outline">Read the overview ↓</a>
+            </div>
+            <div class="hero__meta reveal reveal-delay-4">
+                <span>Chuck Mullaney</span>
+                <span class="dot"></span>
+                <span>Expert.Email</span>
+                <span class="dot"></span>
+                <span>Free · No opt-in required</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- THE PROBLEM -->
+    <section class="section" id="problem">
+        <div class="wrap wrap--narrow">
+            <div class="section__label reveal">The Broken Signal</div>
+            <h2 class="section__title reveal reveal-delay-1">The metric you built your program on has quietly stopped
+                working.</h2>
+            <p class="section__body reveal reveal-delay-2">
+                Open tracking used to be the baseline signal for email engagement. If someone opened, you could
+                reasonably infer attention. That assumption powered your segmentation, your suppression rules, your
+                re-engagement flows, and a good portion of the confidence you carried into reporting.
+            </p>
+            <p class="section__body reveal reveal-delay-3">
+                Apple Mail Privacy Protection changed the math. It downloads every tracking pixel in the background —
+                whether or not anyone reads the email. The open event still fires. It just no longer means what it used
+                to.
+            </p>
+            <div class="callout-box reveal">
+                <p>Two subscribers land in the same "engaged" bucket: one who reads every email, and one whose mail
+                    client fetched the pixel automatically. Your dashboard can't tell you which is which.</p>
+            </div>
+            <p class="section__body reveal">
+                When you can't distinguish a silent loyal reader from a truly disengaged contact, every downstream
+                decision — who to suppress, who to re-engage, how aggressively to sunset — carries a risk you can't
+                fully see. That risk compounds into deliverability problems, higher complaint rates, and a list that
+                quietly degrades while your reports still look green.
+            </p>
+        </div>
+    </section>
+
+    <!-- THE CONCEPT -->
+    <section class="section section--alt" id="concept">
+        <div class="wrap wrap--narrow">
+            <div class="section__label reveal">The Classification Gap</div>
+            <h2 class="section__title reveal reveal-delay-1">There's a name for that uncertainty now.</h2>
+            <p class="section__body reveal reveal-delay-2">
+                The subscribers who show open activity but no intentional action — no clicks, no replies, no downstream
+                behavior you can verify — sit in an overlap that most engagement models don't account for. This paper
+                calls that segment <strong style="color: var(--teal);">Phantom Engaged</strong>.
+            </p>
+
+            <div class="spectrum reveal">
+                <div class="spectrum__label">Phantom Engaged Zone</div>
+                <div class="spectrum__pointer"></div>
+                <div class="spectrum__bar">
+                    <div class="spectrum__segment spectrum__segment--engaged">Confirmed</div>
+                    <div class="spectrum__segment spectrum__segment--phantom">Looks engaged — attention uncertain</div>
+                    <div class="spectrum__segment spectrum__segment--unengaged">Unengaged</div>
+                </div>
+                <p class="spectrum__caption">Privacy protections expand the overlap between what you can measure and what
+                    is real.</p>
+            </div>
+
+            <div class="callout-box reveal">
+                <p>Phantom Engaged is not a behavior segment or a personality type. It is a classification problem. And
+                    the most consequential decisions in email marketing right now hinge on how you handle it.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FRAMEWORK -->
+    <section class="section" id="framework">
+        <div class="wrap">
+            <div class="section__label reveal">The A / B / C Framework</div>
+            <h2 class="section__title reveal reveal-delay-1">Classify by intent, not opens.</h2>
+            <p class="section__body reveal reveal-delay-2">
+                The paper introduces a three-tier classification that replaces the binary engaged/disengaged model with
+                something that accounts for measurement uncertainty.
+            </p>
+
+            <div class="fw-cards">
+                <div class="fw-card fw-card--a reveal">
+                    <div class="fw-card__letter">A</div>
+                    <div class="fw-card__name">Confirmed Intent</div>
+                    <div class="fw-card__desc">Clicks, replies, purchases, logins — any intentional action. These
+                        subscribers have proven their attention. Send with confidence.</div>
+                </div>
+                <div class="fw-card fw-card--b reveal reveal-delay-1">
+                    <div class="fw-card__letter">B</div>
+                    <div class="fw-card__name">Phantom Engaged</div>
+                    <div class="fw-card__desc">Opens present but no verifiable intent. Could be reading silently. Could
+                        be a pixel fetch. This is a holding state, not a verdict.</div>
+                </div>
+                <div class="fw-card fw-card--c reveal reveal-delay-2">
+                    <div class="fw-card__letter">C</div>
+                    <div class="fw-card__name">Unengaged</div>
+                    <div class="fw-card__desc">No opens, clicks, or actions within a defined observation window.
+                        Eligible for re-engagement or sunset. The evidence is clear.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RISK -->
+    <section class="section section--alt" id="risk">
+        <div class="wrap">
+            <div class="section__label reveal">What's at Stake</div>
+            <h2 class="section__title reveal reveal-delay-1">Four mistakes teams make when they ignore the overlap.</h2>
+            <p class="section__body reveal reveal-delay-2">
+                Pre-privacy segmentation rules applied to post-privacy data create damage that's invisible in the moment
+                but shows up as deliverability erosion over time.
+            </p>
+
+            <div class="risk-grid">
+                <div class="risk-item reveal">
+                    <div class="risk-item__num">01</div>
+                    <div class="risk-item__title">Suppressing silent readers</div>
+                    <div class="risk-item__desc">Open-based sunset rules remove subscribers who are reading but never
+                        click. You lose your most consistent audience without realizing it.</div>
+                </div>
+                <div class="risk-item reveal reveal-delay-1">
+                    <div class="risk-item__num">02</div>
+                    <div class="risk-item__title">Pressuring quiet subscribers</div>
+                    <div class="risk-item__desc">Aggressive re-engagement campaigns push loyal-but-silent readers toward
+                        unsubscribing. The campaigns feel urgent; the reader feels harassed.</div>
+                </div>
+                <div class="risk-item reveal reveal-delay-2">
+                    <div class="risk-item__num">03</div>
+                    <div class="risk-item__title">Inflating engagement metrics</div>
+                    <div class="risk-item__desc">Machine opens inflate reporting while actual attention declines.
+                        Deliverability degrades while dashboards still look healthy.</div>
+                </div>
+                <div class="risk-item reveal reveal-delay-3">
+                    <div class="risk-item__num">04</div>
+                    <div class="risk-item__title">Misallocating budget</div>
+                    <div class="risk-item__desc">Strategy decisions built on contaminated signals send budget toward the
+                        wrong segments. Revenue attribution becomes unreliable.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRINCIPLES -->
+    <section class="section" id="principles">
+        <div class="wrap wrap--narrow">
+            <div class="section__label reveal">The Fix</div>
+            <h2 class="section__title reveal reveal-delay-1">Five principles for decisions under ambiguity.</h2>
+            <p class="section__body reveal reveal-delay-2">
+                Not tactics that change with your ESP. Principles that hold regardless of platform, list size, or
+                industry.
+            </p>
+
+            <div class="principles">
+                <div class="principle reveal">
+                    <span class="principle__num">01</span>
+                    <span class="principle__text">Intentional proof beats inferred attention.</span>
+                </div>
+                <div class="principle reveal reveal-delay-1">
+                    <span class="principle__num">02</span>
+                    <span class="principle__text">When uncertain, restraint is a strategy.</span>
+                </div>
+                <div class="principle reveal reveal-delay-1">
+                    <span class="principle__num">03</span>
+                    <span class="principle__text">Classify first, optimize second.</span>
+                </div>
+                <div class="principle reveal reveal-delay-2">
+                    <span class="principle__num">04</span>
+                    <span class="principle__text">Lock your observation windows.</span>
+                </div>
+                <div class="principle reveal reveal-delay-2">
+                    <span class="principle__num">05</span>
+                    <span class="principle__text">Prefer reversible actions over irreversible ones.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AUTHOR -->
+    <section class="section section--alt" id="author">
+        <div class="wrap wrap--narrow">
+            <div class="section__label reveal">About the Author</div>
+            <h2 class="section__title reveal reveal-delay-1">Written from 25 years in the inbox.</h2>
+
+            <div class="author-block reveal reveal-delay-2">
+                <div class="author-block__badge">CM</div>
+                <div class="author-block__info">
+                    <div class="author-block__name">Chuck Mullaney</div>
+                    <div class="author-block__org">Expert.Email</div>
+                    <p class="author-block__bio">
+                        Chuck brings 25 years of digital marketing expertise, with 15 years dedicated exclusively to
+                        email marketing and inbox deliverability. He has architected six email platforms: two
+                        public-facing systems that achieved significant market adoption and four proprietary platforms
+                        built for private clients.
+                    </p>
+                    <p class="author-block__bio">
+                        Through his oversight of those public platforms, Chuck gained firsthand insight into the email
+                        marketing strategies of 26,000 businesses, observing their approaches to campaigns, automation,
+                        deliverability challenges, and subscriber engagement. That rare vantage point, combined with
+                        years of mid-market and enterprise consulting, informs the classification framework in this
+                        paper.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-final">
+        <div class="wrap">
+            <div class="cta-final__content">
+                <div class="section__label reveal">Free Download</div>
+                <h2 class="cta-final__title reveal reveal-delay-1">Read the paper.</h2>
+                <p class="cta-final__body reveal reveal-delay-2">
+                    Nine pages. No opt-in. No drip sequence. Written for practitioners who manage real lists and answer
+                    to deliverability outcomes.
+                </p>
+                <div class="reveal reveal-delay-3">
+                    <a href="../Phantom_Engaged_Whitepaper_Full.pdf" download class="btn btn--primary btn--large">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                        </svg>
+                        Download Phantom Engaged (PDF)
+                    </a>
+                </div>
+                <p class="cta-final__note reveal reveal-delay-4">Version 4.0 · February 2026 · You may share this
+                    document in full with attribution.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="wrap">
+            <div class="footer__inner">
+                <span class="footer__copy">© 2026 Chuck Mullaney. All rights reserved. · Last updated February
+                    2026</span>
+                <a href="https://expert.email" target="_blank" rel="noopener" class="footer__link">Expert.Email</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: #1C2A3A; transform-origin: top left; }
+
+      .scene { position: absolute; top: 0; left: 0; width: 1920px; height: 1080px; background-color: #1C2A3A; overflow: hidden; opacity: 0; pointer-events: none; }
+      .scene.active { opacity: 1; pointer-events: auto; }
+      .scene-content { display: flex; flex-direction: column; justify-content: center; width: 100%; height: 100%; padding: 100px 140px; gap: 32px; box-sizing: border-box; }
+
+      .headline { font-family: "Space Grotesk", sans-serif; font-weight: 800; color: #E8ECF1; line-height: 1.1; }
+      .headline-lg { font-size: 110px; }
+      .headline-md { font-size: 80px; }
+      .headline-sm { font-size: 60px; }
+      .body-text { font-family: "Inter", sans-serif; font-weight: 400; color: #8A9BB5; font-size: 36px; line-height: 1.6; max-width: 1400px; }
+      .body-light { font-family: "Inter", sans-serif; font-weight: 400; color: #E8ECF1; font-size: 34px; line-height: 1.5; max-width: 1400px; }
+      .accent { color: #2BA5A5; }
+      .danger { color: #EF4444; }
+      .mono { font-family: "JetBrains Mono", monospace; }
+      .label { font-family: "Space Grotesk", sans-serif; font-weight: 600; font-size: 22px; text-transform: uppercase; letter-spacing: 4px; color: #2BA5A5; }
+      .accent-line { width: 120px; height: 4px; background: #2BA5A5; border-radius: 2px; }
+      .glow-orb { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.10; pointer-events: none; }
+
+      /* Framework cards */
+      .fw-grid { display: flex; gap: 40px; margin-top: 20px; }
+      .fw-card { flex: 1; padding: 44px 36px; border-radius: 16px; border: 1px solid rgba(138,155,181,0.2); background: rgba(31,48,68,0.8); }
+      .fw-card .cl { font-family: "JetBrains Mono", monospace; font-size: 52px; font-weight: 700; margin-bottom: 14px; }
+      .fw-card .ct { font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: 30px; color: #E8ECF1; margin-bottom: 12px; }
+      .fw-card .cd { font-family: "Inter", sans-serif; font-size: 24px; color: #8A9BB5; line-height: 1.5; }
+      .ca .cl { color: #22C55E; }
+      .cb .cl { color: #2BA5A5; }
+      .cc .cl { color: #EF4444; }
+
+      /* Stats */
+      .stat-row { display: flex; gap: 100px; margin-top: 28px; }
+      .stat-item { display: flex; flex-direction: column; gap: 12px; }
+      .stat-num { font-family: "Space Grotesk", sans-serif; font-weight: 800; font-size: 88px; color: #2BA5A5; line-height: 1; font-variant-numeric: tabular-nums; }
+      .stat-lbl { font-family: "Inter", sans-serif; font-size: 26px; color: #8A9BB5; }
+
+      /* Principles */
+      .pr-list { display: flex; flex-direction: column; gap: 32px; margin-top: 16px; }
+      .pr-item { display: flex; align-items: center; gap: 28px; }
+      .pr-num { font-family: "JetBrains Mono", monospace; font-size: 30px; color: #2BA5A5; min-width: 56px; }
+      .pr-txt { font-family: "Inter", sans-serif; font-size: 34px; color: #E8ECF1; line-height: 1.4; }
+
+      /* CTA */
+      .cta-box { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 36px; }
+      .cta-url { font-family: "JetBrains Mono", monospace; font-size: 48px; color: #2BA5A5; padding: 24px 64px; border: 2px solid #2BA5A5; border-radius: 12px; background: rgba(43,165,165,0.08); }
+      .cta-sub { font-family: "Inter", sans-serif; font-size: 30px; color: #8A9BB5; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="90" data-width="1920" data-height="1080">
+
+      <!-- SCENE 1 — Hook (0–15s) -->
+      <div id="s1" class="scene clip" data-start="0" data-duration="15" data-track-index="1">
+        <div class="glow-orb" style="width:600px;height:600px;background:#2BA5A5;top:-100px;right:-100px;"></div>
+        <div class="glow-orb" style="width:400px;height:400px;background:#EF4444;bottom:-80px;left:200px;"></div>
+        <div class="scene-content">
+          <div id="s1-label" class="label">The Hidden Risk in Your Email List</div>
+          <div class="accent-line" id="s1-line"></div>
+          <h1 id="s1-title" class="headline headline-lg">Your opens <span class="danger">lie</span> to you.</h1>
+          <p id="s1-body" class="body-text">Apple Mail Privacy Protection pre-fetches every tracking pixel — whether anyone reads your email or not.</p>
+          <p id="s1-body2" class="body-text" style="margin-top:-8px;">Your dashboard says "engaged." The truth is: <span class="accent">you can't tell.</span></p>
+        </div>
+      </div>
+
+      <!-- SCENE 2 — The Problem (15–30s) -->
+      <div id="s2" class="scene clip" data-start="15" data-duration="15" data-track-index="2">
+        <div class="glow-orb" style="width:500px;height:500px;background:#2BA5A5;top:200px;left:-120px;"></div>
+        <div class="scene-content">
+          <div id="s2-label" class="label">The Phantom Engaged Overlap</div>
+          <div class="accent-line" id="s2-line"></div>
+          <h2 id="s2-title" class="headline headline-md">Two people. <span class="accent">One bucket.</span></h2>
+          <p id="s2-b1" class="body-light">A loyal reader whose client blocks tracking —</p>
+          <p id="s2-b2" class="body-light">and a truly disengaged recipient whose client faked an open.</p>
+          <p id="s2-b3" class="body-text" style="margin-top:16px;">They collapse into the same reporting row. <span class="accent">This is Phantom Engaged.</span></p>
+        </div>
+      </div>
+
+      <!-- SCENE 3 — Framework (30–48s) -->
+      <div id="s3" class="scene clip" data-start="30" data-duration="18" data-track-index="3">
+        <div class="glow-orb" style="width:500px;height:500px;background:#22C55E;bottom:-100px;right:100px;opacity:0.07;"></div>
+        <div class="scene-content" style="gap:24px;">
+          <div id="s3-label" class="label">The A / B / C Framework</div>
+          <div class="accent-line" id="s3-line"></div>
+          <h2 id="s3-title" class="headline headline-sm">Classify by <span class="accent">intent</span>, not opens.</h2>
+          <div class="fw-grid">
+            <div id="s3-ca" class="fw-card ca">
+              <div class="cl">A</div>
+              <div class="ct">Confirmed Intent</div>
+              <div class="cd">Clicks, replies, purchases, logins. Send with confidence.</div>
+            </div>
+            <div id="s3-cb" class="fw-card cb">
+              <div class="cl">B</div>
+              <div class="ct">Phantom (Uncertain)</div>
+              <div class="cd">Opens present but no intentional action. Handle conservatively.</div>
+            </div>
+            <div id="s3-cc" class="fw-card cc">
+              <div class="cl">C</div>
+              <div class="ct">Unengaged</div>
+              <div class="cd">No opens, clicks, or actions within a window. Eligible for re-engagement.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SCENE 4 — Risk (48–62s) -->
+      <div id="s4" class="scene clip" data-start="48" data-duration="14" data-track-index="4">
+        <div class="glow-orb" style="width:600px;height:600px;background:#EF4444;top:-150px;left:600px;opacity:0.08;"></div>
+        <div class="scene-content">
+          <div id="s4-label" class="label">What's at stake</div>
+          <div class="accent-line" id="s4-line"></div>
+          <h2 id="s4-title" class="headline headline-md">Ignore it, <span class="danger">and you lose.</span></h2>
+          <div class="stat-row">
+            <div class="stat-item" id="s4-st1"><div class="stat-num">↓</div><div class="stat-lbl">Inbox placement drops</div></div>
+            <div class="stat-item" id="s4-st2"><div class="stat-num">↑</div><div class="stat-lbl">Complaint rates climb</div></div>
+            <div class="stat-item" id="s4-st3"><div class="stat-num">∅</div><div class="stat-lbl">Silent revenue vanishes</div></div>
+          </div>
+          <p id="s4-body" class="body-text" style="margin-top:28px;">Open-based suppression quietly removes your highest-value silent readers.</p>
+        </div>
+      </div>
+
+      <!-- SCENE 5 — Principles (62–78s) -->
+      <div id="s5" class="scene clip" data-start="62" data-duration="16" data-track-index="5">
+        <div class="glow-orb" style="width:400px;height:400px;background:#2BA5A5;bottom:0;right:-80px;"></div>
+        <div class="scene-content">
+          <div id="s5-label" class="label">The Fix</div>
+          <div class="accent-line" id="s5-line"></div>
+          <h2 id="s5-title" class="headline headline-sm">Five principles. <span class="accent">Zero guesswork.</span></h2>
+          <div class="pr-list">
+            <div class="pr-item" id="s5-p1"><span class="pr-num">01</span><span class="pr-txt">Intentional proof beats inferred attention.</span></div>
+            <div class="pr-item" id="s5-p2"><span class="pr-num">02</span><span class="pr-txt">When uncertain, restraint is a strategy.</span></div>
+            <div class="pr-item" id="s5-p3"><span class="pr-num">03</span><span class="pr-txt">Classify first, optimize second.</span></div>
+            <div class="pr-item" id="s5-p4"><span class="pr-num">04</span><span class="pr-txt">Lock your observation windows.</span></div>
+            <div class="pr-item" id="s5-p5"><span class="pr-num">05</span><span class="pr-txt">Prefer reversible actions over irreversible ones.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SCENE 6 — CTA (78–90s) -->
+      <div id="s6" class="scene clip" data-start="78" data-duration="12" data-track-index="6">
+        <div class="glow-orb" style="width:700px;height:700px;background:#2BA5A5;top:50%;left:50%;transform:translate(-50%,-50%);opacity:0.05;"></div>
+        <div class="scene-content">
+          <div class="cta-box">
+            <div id="s6-label" class="label">Free Classification Tool</div>
+            <div class="accent-line" id="s6-line" style="width:80px;"></div>
+            <h2 id="s6-title" class="headline headline-md" style="text-align:center;">Stop guessing.<br><span class="accent">Start classifying.</span></h2>
+            <div id="s6-url" class="cta-url">expert.email</div>
+            <p id="s6-sub" class="cta-sub">No opt-in. No paywall. No sales pitch.</p>
+            <p id="s6-author" class="body-text" style="font-size:26px;margin-top:8px;">By Chuck Mullaney — 25 years in email deliverability</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      // Ambient glow
+      tl.to(".glow-orb", { scale: 1.15, opacity: 0.16, duration: 5, ease: "sine.inOut", repeat: Math.floor(90 / 10) - 1, yoyo: true }, 0);
+
+      // S1 (0-15)
+      tl.from("#s1-label", { y: 30, opacity: 0, duration: 0.6, ease: "power3.out" }, 0.4);
+      tl.from("#s1-line", { scaleX: 0, transformOrigin: "left", opacity: 0, duration: 0.5, ease: "expo.out" }, 0.7);
+      tl.from("#s1-title", { y: 50, opacity: 0, duration: 0.8, ease: "expo.out" }, 1.0);
+      tl.from("#s1-body", { y: 40, opacity: 0, duration: 0.7, ease: "power3.out" }, 2.0);
+      tl.from("#s1-body2", { y: 30, opacity: 0, duration: 0.6, ease: "power3.out" }, 3.2);
+
+      // S2 (15-30)
+      tl.from("#s2-label", { y: 30, opacity: 0, duration: 0.6, ease: "power3.out" }, 15.4);
+      tl.from("#s2-line", { scaleX: 0, transformOrigin: "left", opacity: 0, duration: 0.5, ease: "expo.out" }, 15.7);
+      tl.from("#s2-title", { y: 50, opacity: 0, duration: 0.8, ease: "expo.out" }, 16.0);
+      tl.from("#s2-b1", { x: -40, opacity: 0, duration: 0.6, ease: "power2.out" }, 17.5);
+      tl.from("#s2-b2", { x: -40, opacity: 0, duration: 0.6, ease: "power2.out" }, 18.5);
+      tl.from("#s2-b3", { y: 30, opacity: 0, duration: 0.6, ease: "back.out(1.2)" }, 20.0);
+
+      // S3 (30-48)
+      tl.from("#s3-label", { y: 30, opacity: 0, duration: 0.6, ease: "power3.out" }, 30.4);
+      tl.from("#s3-line", { scaleX: 0, transformOrigin: "left", opacity: 0, duration: 0.5, ease: "expo.out" }, 30.7);
+      tl.from("#s3-title", { y: 40, opacity: 0, duration: 0.7, ease: "expo.out" }, 31.0);
+      tl.from("#s3-ca", { y: 60, opacity: 0, duration: 0.7, ease: "back.out(1.2)" }, 32.5);
+      tl.from("#s3-cb", { y: 60, opacity: 0, duration: 0.7, ease: "back.out(1.2)" }, 34.0);
+      tl.from("#s3-cc", { y: 60, opacity: 0, duration: 0.7, ease: "back.out(1.2)" }, 35.5);
+
+      // S4 (48-62)
+      tl.from("#s4-label", { y: 30, opacity: 0, duration: 0.6, ease: "power3.out" }, 48.4);
+      tl.from("#s4-line", { scaleX: 0, transformOrigin: "left", opacity: 0, duration: 0.5, ease: "expo.out" }, 48.7);
+      tl.from("#s4-title", { y: 50, opacity: 0, duration: 0.8, ease: "expo.out" }, 49.0);
+      tl.from("#s4-st1", { y: 50, opacity: 0, duration: 0.6, ease: "power3.out" }, 50.5);
+      tl.from("#s4-st2", { y: 50, opacity: 0, duration: 0.6, ease: "power3.out" }, 51.5);
+      tl.from("#s4-st3", { y: 50, opacity: 0, duration: 0.6, ease: "power3.out" }, 52.5);
+      tl.from("#s4-body", { y: 30, opacity: 0, duration: 0.6, ease: "power2.out" }, 54.0);
+
+      // S5 (62-78)
+      tl.from("#s5-label", { y: 30, opacity: 0, duration: 0.6, ease: "power3.out" }, 62.4);
+      tl.from("#s5-line", { scaleX: 0, transformOrigin: "left", opacity: 0, duration: 0.5, ease: "expo.out" }, 62.7);
+      tl.from("#s5-title", { y: 40, opacity: 0, duration: 0.7, ease: "expo.out" }, 63.0);
+      tl.from("#s5-p1", { x: -40, opacity: 0, duration: 0.5, ease: "power3.out" }, 64.5);
+      tl.from("#s5-p2", { x: -40, opacity: 0, duration: 0.5, ease: "power3.out" }, 66.0);
+      tl.from("#s5-p3", { x: -40, opacity: 0, duration: 0.5, ease: "power3.out" }, 67.5);
+      tl.from("#s5-p4", { x: -40, opacity: 0, duration: 0.5, ease: "power3.out" }, 69.0);
+      tl.from("#s5-p5", { x: -40, opacity: 0, duration: 0.5, ease: "power3.out" }, 70.5);
+
+      // S6 (78-90)
+      tl.from("#s6-label", { y: 30, opacity: 0, duration: 0.6, ease: "power3.out" }, 78.5);
+      tl.from("#s6-line", { scaleX: 0, transformOrigin: "center", opacity: 0, duration: 0.5, ease: "expo.out" }, 78.8);
+      tl.from("#s6-title", { scale: 0.9, opacity: 0, duration: 0.8, ease: "back.out(1.4)" }, 79.2);
+      tl.from("#s6-url", { y: 40, opacity: 0, duration: 0.6, ease: "expo.out" }, 80.5);
+      tl.from("#s6-sub", { y: 20, opacity: 0, duration: 0.5, ease: "power2.out" }, 81.5);
+      tl.from("#s6-author", { y: 20, opacity: 0, duration: 0.5, ease: "power2.out" }, 82.5);
+
+      // Final fade out (only scene with exit animations)
+      tl.to("#s6-label, #s6-line, #s6-title, #s6-url, #s6-sub, #s6-author", {
+        opacity: 0, y: -20, duration: 0.8, ease: "power2.in", stagger: 0.1
+      }, 88.5);
+
+      // Scene visibility management
+      const scenes = [
+        { el: document.getElementById('s1'), start: 0, end: 15 },
+        { el: document.getElementById('s2'), start: 15, end: 30 },
+        { el: document.getElementById('s3'), start: 30, end: 48 },
+        { el: document.getElementById('s4'), start: 48, end: 62 },
+        { el: document.getElementById('s5'), start: 62, end: 78 },
+        { el: document.getElementById('s6'), start: 78, end: 90 },
+      ];
+
+      // Show/hide scenes at the right times
+      scenes.forEach(s => {
+        tl.call(() => { s.el.classList.add('active'); }, [], s.start);
+        if (s.start > 0) {
+          // Fade out previous scene just before new one starts
+          const prev = scenes.find(p => p.end === s.start);
+          if (prev) tl.call(() => { prev.el.classList.remove('active'); }, [], s.start);
+        }
+      });
+
+      // Viewport scaling to fit browser window
+      function scaleToFit() {
+        const sx = window.innerWidth / 1920;
+        const sy = window.innerHeight / 1080;
+        const scale = Math.min(sx, sy);
+        document.body.style.transform = `scale(${scale})`;
+      }
+      scaleToFit();
+      window.addEventListener('resize', scaleToFit);
+
+      window.__timelines["main"] = tl;
+      tl.play();
+    </script>
+  </body>
+</html>
