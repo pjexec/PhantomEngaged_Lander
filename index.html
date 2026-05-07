@@ -204,6 +204,22 @@
 
     .btn-nav:hover { opacity: 0.82; }
 
+    /* Hamburger toggle — hidden on desktop */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      color: var(--fg);
+    }
+
+    .nav-toggle svg {
+      display: block;
+      width: 22px;
+      height: 22px;
+    }
+
     /* ── Hero ────────────────────────────────── */
     .hero {
       max-width: 1120px;
@@ -817,24 +833,159 @@
 
     /* ── Responsive ──────────────────────────── */
     @media (max-width: 860px) {
-      .hero { grid-template-columns: 1fr; gap: 40px; padding: 64px 24px 48px; }
-      .problem-grid { grid-template-columns: 1fr; gap: 40px; }
-      .definition-grid { grid-template-columns: 1fr; gap: 40px; }
-      .author-grid { grid-template-columns: 1fr; gap: 40px; }
+      /* Nav — hamburger menu */
+      .nav-toggle { display: block; }
+
+      nav {
+        padding: 0 20px;
+        flex-wrap: wrap;
+        height: auto;
+        min-height: 52px;
+      }
+
+      .nav-wordmark {
+        padding: 14px 0;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        gap: 0;
+        padding: 0 0 16px;
+        border-top: 1px solid var(--border);
+      }
+
+      .nav-links.open { display: flex; }
+
+      .nav-links li {
+        width: 100%;
+      }
+
+      .nav-links a {
+        display: block;
+        padding: 12px 0;
+        font-size: 14px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav-links li:last-child a {
+        border-bottom: none;
+      }
+
+      .btn-nav {
+        margin-left: 0;
+        margin-top: 8px;
+        display: block;
+        text-align: center;
+        padding: 12px 14px;
+        font-size: 13px;
+      }
+
+      /* Hero */
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 48px 20px 40px;
+      }
+
+      h1 { font-size: 28px; }
+
+      .hero-deck { font-size: 15px; }
+
+      .btn-primary { font-size: 13px; padding: 14px 24px; }
+
+      /* Signal widget */
+      .signal-widget { max-width: 100%; }
+
+      /* Sections */
+      .section-inner { padding: 48px 20px; }
+      .problem-grid { grid-template-columns: 1fr; gap: 32px; }
+      .definition-grid { grid-template-columns: 1fr; gap: 32px; }
+      .author-grid { grid-template-columns: 1fr; gap: 32px; }
       .contents-grid { grid-template-columns: 1fr 1fr; }
-      .cta-inner { grid-template-columns: 1fr; gap: 32px; }
+
+      /* Spec card */
+      .spec-card {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .spec-key {
+        min-width: 100px;
+        font-size: 10px;
+      }
+
+      .spec-val {
+        font-size: 13px;
+      }
+
+      /* Comparison table */
+      .ct-header, .ct-row {
+        font-size: 12px;
+      }
+
+      /* CTA */
+      .cta-inner { grid-template-columns: 1fr; gap: 24px; }
       .cta-cta-wrap { text-align: left; }
       .cta-meta { text-align: left; }
-      .section-inner { padding: 56px 24px; }
-      nav { padding: 0 24px; }
+
+      /* Footer */
+      footer { padding: 20px; }
+      .footer-inner { flex-direction: column; align-items: flex-start; gap: 8px; }
     }
 
     @media (max-width: 520px) {
+      h1 { font-size: 24px; }
+
+      .hero { padding: 36px 16px 32px; }
+
+      .hero-eyebrow { font-size: 10px; }
+
+      .hero-deck { font-size: 14px; }
+
+      .section-inner { padding: 40px 16px; }
+
+      .section-label { font-size: 10px; }
+
+      .section-headline { font-size: 22px; }
+
       .contents-grid { grid-template-columns: 1fr; }
+
+      .content-card { padding: 20px; }
+
+      /* Comparison table — stack on small screens */
       .ct-header, .ct-row { grid-template-columns: 1fr 1fr; }
       .ct-row .ct-cell:first-child, .ct-header .ct-cell:first-child { display: none; }
-      footer { padding: 20px 24px; }
-      .footer-inner { flex-direction: column; align-items: flex-start; gap: 8px; }
+
+      /* Spec card — stack vertically */
+      .spec-row {
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .spec-key {
+        border-right: none;
+        border-bottom: none;
+        padding: 8px 12px 0;
+        min-width: unset;
+      }
+
+      .spec-val {
+        padding: 4px 12px 12px;
+      }
+
+      /* FAQ */
+      summary { font-size: 14px; padding: 14px 16px; }
+      .faq-body { padding: 0 16px 16px; font-size: 13px; }
+
+      /* CTA section */
+      .cta-headline { font-size: 22px; }
+      .cta-sub { font-size: 13px; }
+      .btn-cta { font-size: 14px; padding: 14px 28px; }
+
+      /* Footer */
+      .footer-left { font-size: 10px; }
     }
 
     /* ── Opt-in Modal ─────────────────────────── */
@@ -1023,10 +1174,15 @@
 
     @media (max-width: 520px) {
       .optin-modal {
-        max-width: 100%;
+        max-width: calc(100% - 32px);
+        margin: 0 16px;
+        border-radius: 8px;
       }
       .optin-body {
         padding: 24px 20px;
+      }
+      .optin-input {
+        font-size: 16px; /* prevents iOS zoom on focus */
       }
     }
   </style>
@@ -1036,7 +1192,10 @@
   <!-- ── Nav ───────────────────────────────────────── -->
   <nav>
     <a href="/" class="nav-wordmark">Phantom Engaged</a>
-    <ul class="nav-links">
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <ul class="nav-links" id="nav-links">
       <li><a href="#problem">The Problem</a></li>
       <li><a href="#paper">The Paper</a></li>
       <li><a href="#author">Author</a></li>
@@ -1374,6 +1533,23 @@
   <script>
   (function() {
     'use strict';
+
+    // ── Hamburger nav toggle ──────────────────
+    var navToggle = document.getElementById('nav-toggle');
+    var navLinks  = document.getElementById('nav-links');
+    if (navToggle && navLinks) {
+      navToggle.addEventListener('click', function() {
+        var isOpen = navLinks.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', isOpen);
+      });
+      // Close menu when a link is tapped
+      navLinks.querySelectorAll('a').forEach(function(a) {
+        a.addEventListener('click', function() {
+          navLinks.classList.remove('open');
+          navToggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
 
     var STORAGE_KEY = 'pe_downloaded';
     var overlay     = document.getElementById('optin-overlay');
