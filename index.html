@@ -836,6 +836,199 @@
       footer { padding: 20px 24px; }
       .footer-inner { flex-direction: column; align-items: flex-start; gap: 8px; }
     }
+
+    /* ── Opt-in Modal ─────────────────────────── */
+    .optin-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: oklch(22% 0.02 240 / 0.6);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .optin-overlay.active { display: flex; }
+
+    .optin-modal {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      width: 100%;
+      max-width: 420px;
+      overflow: hidden;
+      position: relative;
+      animation: optin-in 0.2s ease-out;
+    }
+
+    @keyframes optin-in {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .optin-header {
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .optin-header-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .optin-close {
+      background: none;
+      border: none;
+      font-size: 18px;
+      color: var(--muted);
+      cursor: pointer;
+      padding: 0;
+      line-height: 1;
+      font-family: var(--font-mono);
+      transition: color 0.15s;
+    }
+
+    .optin-close:hover { color: var(--fg); }
+
+    .optin-body {
+      padding: 28px 24px;
+    }
+
+    .optin-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--fg);
+      line-height: 1.3;
+      margin-bottom: 6px;
+    }
+
+    .optin-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .optin-field {
+      margin-bottom: 12px;
+    }
+
+    .optin-label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .optin-input {
+      width: 100%;
+      padding: 10px 14px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: var(--fg);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+
+    .optin-input::placeholder {
+      color: oklch(65% 0.01 240);
+    }
+
+    .optin-input:focus {
+      border-color: var(--accent);
+    }
+
+    .optin-submit {
+      width: 100%;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--surface);
+      background: var(--accent);
+      border: none;
+      border-radius: 5px;
+      padding: 12px 24px;
+      cursor: pointer;
+      transition: opacity 0.15s;
+      margin-top: 8px;
+    }
+
+    .optin-submit:hover { opacity: 0.85; }
+
+    .optin-submit:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .optin-footer {
+      padding: 0 24px 20px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      line-height: 1.5;
+    }
+
+    .optin-error {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--danger);
+      margin-top: 10px;
+      display: none;
+      letter-spacing: 0.02em;
+    }
+
+    .optin-error.visible { display: block; }
+
+    .optin-success {
+      text-align: center;
+      padding: 48px 24px;
+    }
+
+    .optin-success-icon {
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+
+    .optin-success-text {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--fg);
+      margin-bottom: 4px;
+    }
+
+    .optin-success-sub {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    @media (max-width: 520px) {
+      .optin-modal {
+        max-width: 100%;
+      }
+      .optin-body {
+        padding: 24px 20px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -860,7 +1053,7 @@
       <p class="hero-deck">After Apple Mail Privacy Protection, engaged subscribers and disengaged ones appear identical in your metrics. The uncertainty has a name. This paper gives you the framework for managing it.</p>
       <div class="hero-cta-group">
         <a href="Phantom_Engaged_Whitepaper_Full.pdf" download class="btn-primary">Download Phantom Engaged (PDF)</a>
-        <span class="cta-note">Free · No opt-in · Shareable with attribution</span>
+        <span class="cta-note">Free · Shareable with attribution</span>
       </div>
     </div>
 
@@ -1120,7 +1313,7 @@
       <div>
         <div class="cta-eyebrow">// Free · Nine pages · Version 4.0</div>
         <h2 class="cta-headline">Download Phantom Engaged</h2>
-        <p class="cta-sub">The complete framework for email measurement under uncertainty: A/B/C classification, five working principles, four common mistakes, and the governance playbook. No opt-in required.</p>
+        <p class="cta-sub">The complete framework for email measurement under uncertainty: A/B/C classification, five working principles, four common mistakes, and the governance playbook.</p>
       </div>
       <div class="cta-cta-wrap">
         <a href="Phantom_Engaged_Whitepaper_Full.pdf" download class="btn-cta">Download PDF →</a>
@@ -1141,6 +1334,185 @@
       </div>
     </div>
   </footer>
+
+  <!-- ── Opt-in Modal ────────────────────────────────── -->
+  <div id="optin-overlay" class="optin-overlay">
+    <div class="optin-modal" id="optin-modal">
+      <div class="optin-header">
+        <span class="optin-header-label">Download Paper</span>
+        <button class="optin-close" id="optin-close" aria-label="Close">×</button>
+      </div>
+      <div id="optin-form-container">
+        <div class="optin-body">
+          <div class="optin-title">Get the Phantom Engaged paper.</div>
+          <div class="optin-desc">Enter your details below. The PDF will download immediately after.</div>
+          <form id="optin-form" novalidate>
+            <div class="optin-field">
+              <label class="optin-label" for="optin-firstName">First Name</label>
+              <input class="optin-input" type="text" id="optin-firstName" name="firstName" placeholder="Jane" required autocomplete="given-name">
+            </div>
+            <div class="optin-field">
+              <label class="optin-label" for="optin-email">Email</label>
+              <input class="optin-input" type="email" id="optin-email" name="email" placeholder="jane@company.com" required autocomplete="email">
+            </div>
+            <button type="submit" class="optin-submit" id="optin-submit">Download the Paper</button>
+            <div class="optin-error" id="optin-error"></div>
+          </form>
+        </div>
+        <div class="optin-footer">
+          Your information stays private. No spam. Unsubscribe anytime.
+        </div>
+      </div>
+      <div id="optin-success" class="optin-success" style="display:none;">
+        <div class="optin-success-icon">↓</div>
+        <div class="optin-success-text">Your download is starting.</div>
+        <div class="optin-success-sub">Check your downloads folder.</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function() {
+    'use strict';
+
+    var STORAGE_KEY = 'pe_downloaded';
+    var overlay     = document.getElementById('optin-overlay');
+    var modal       = document.getElementById('optin-modal');
+    var closeBtn    = document.getElementById('optin-close');
+    var form        = document.getElementById('optin-form');
+    var formWrap    = document.getElementById('optin-form-container');
+    var successEl   = document.getElementById('optin-success');
+    var submitBtn   = document.getElementById('optin-submit');
+    var errorEl     = document.getElementById('optin-error');
+    var firstInput  = document.getElementById('optin-firstName');
+    var emailInput  = document.getElementById('optin-email');
+
+    // ── Download trigger ──────────────────────
+    function triggerDownload() {
+      var a = document.createElement('a');
+      a.href = 'Phantom_Engaged_Whitepaper_Full.pdf';
+      a.download = 'Phantom_Engaged_Whitepaper_Full.pdf';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+
+    // ── Already opted in? Download directly ───
+    function hasOptedIn() {
+      try { return localStorage.getItem(STORAGE_KEY) === 'true'; }
+      catch(e) { return false; }
+    }
+
+    function markOptedIn() {
+      try { localStorage.setItem(STORAGE_KEY, 'true'); }
+      catch(e) { /* storage blocked */ }
+    }
+
+    // ── Modal controls ────────────────────────
+    function openModal() {
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      // Reset to form state
+      formWrap.style.display = '';
+      successEl.style.display = 'none';
+      errorEl.classList.remove('visible');
+      errorEl.textContent = '';
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Download the Paper';
+      form.reset();
+      setTimeout(function() { firstInput.focus(); }, 100);
+    }
+
+    function closeModal() {
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // ── Intercept all download links ──────────
+    var downloadLinks = document.querySelectorAll('a[href*="Phantom_Engaged_Whitepaper_Full.pdf"]');
+
+    for (var i = 0; i < downloadLinks.length; i++) {
+      downloadLinks[i].addEventListener('click', function(e) {
+        if (hasOptedIn()) {
+          // Let the native download happen
+          return;
+        }
+        e.preventDefault();
+        openModal();
+      });
+    }
+
+    // ── Close handlers ────────────────────────
+    closeBtn.addEventListener('click', closeModal);
+
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) closeModal();
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && overlay.classList.contains('active')) closeModal();
+    });
+
+    // ── Form submission ───────────────────────
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      var firstName = firstInput.value.trim();
+      var email     = emailInput.value.trim();
+
+      // Client-side validation
+      if (!firstName) {
+        showError('Please enter your first name.');
+        firstInput.focus();
+        return;
+      }
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showError('Please enter a valid email address.');
+        emailInput.focus();
+        return;
+      }
+
+      // Disable and show loading
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting…';
+      errorEl.classList.remove('visible');
+
+      fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ firstName: firstName, email: email })
+      })
+      .then(function(res) { return res.json(); })
+      .then(function(data) {
+        if (data.success) {
+          markOptedIn();
+          // Show success state
+          formWrap.style.display = 'none';
+          successEl.style.display = '';
+          // Trigger download
+          triggerDownload();
+          // Close modal after a moment
+          setTimeout(closeModal, 2000);
+        } else {
+          showError(data.error || 'Something went wrong. Please try again.');
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Download the Paper';
+        }
+      })
+      .catch(function() {
+        showError('Connection error. Please try again.');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Download the Paper';
+      });
+    });
+
+    function showError(msg) {
+      errorEl.textContent = msg;
+      errorEl.classList.add('visible');
+    }
+
+  })();
+  </script>
 
 </body>
 </html>

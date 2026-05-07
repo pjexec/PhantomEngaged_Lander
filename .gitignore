@@ -4,3 +4,4 @@ __pycache__/
 thoughtpaper/
 hyperframes/
 .DS_Store
+.env
