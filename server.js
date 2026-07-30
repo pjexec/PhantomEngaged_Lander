@@ -139,6 +139,17 @@ app.post('/api/subscribe', async (req, res) => {
   }
 });
 
+// ── Legacy whitepaper filename redirects ───────────────────
+// The corrected edition is Phantom_Engaged_Whitepaper_V5.pdf. These 301s must stay
+// ABOVE express.static and above the app.get('*') fallback. Without them the catch-all
+// answers an old PDF URL with HTTP 200 and the HTML homepage, and the browser saves that
+// HTML to disk under a .pdf filename, which looks to the reader like a corrupt file.
+app.get('/Phantom_Engaged_Whitepaper_V4.pdf', (req, res) =>
+  res.redirect(301, '/Phantom_Engaged_Whitepaper_V5.pdf'));
+
+app.get('/Phantom_Engaged_Whitepaper_Full.pdf', (req, res) =>
+  res.redirect(301, '/Phantom_Engaged_Whitepaper_V5.pdf'));
+
 // ── Serve static files ─────────────────────────────────────
 app.use(express.static(path.join(__dirname), {
   extensions: ['html'],

@@ -3,16 +3,16 @@
 Phantom Engaged Position Paper Generator
 =========================================
 
-Generates a complete Phantom Engaged v5 PDF with partner-specific
-tracking links baked into two callout placements.
+Generates a complete Phantom Engaged v5 PDF.
 
 USAGE:
-  python3 generate_phantom_engaged.py                         # default link
-  python3 generate_phantom_engaged.py "https://partner.link"  # custom link
+  python3 generate_phantom_engaged.py
+  python3 generate_phantom_engaged.py "https://partner.link"
 
-The same URL is used in both the Approach-A callout (after the A/B/C
-framework) and the Approach-C "Put This Into Practice" section (before
-References).  Change it per partner — everything else stays identical.
+NOTE (2026-07-30): the two free-tool callouts that carried the partner
+tracking link (Approach-A after the A/B/C framework, and Approach-C
+"Put This Into Practice" before References) were removed. TOOL_URL is
+retained but is no longer rendered anywhere in the document.
 """
 
 import sys
@@ -586,18 +586,7 @@ def build():
     story.append(sp(10))
 
     # ══════════════════════════════════════════════════════════
-    # APPROACH A — free tool callout (hidden link)
-    # ══════════════════════════════════════════════════════════
-    tool_callout_texts = [
-        (f'<b>Apply this framework to your list.</b>  We built a '
-         f'<a href="{TOOL_URL}" color="{LINK_COLOR.hexval()}">free classification tool</a> '
-         f'to help you map your subscribers into the A/B/C framework described above. '
-         f'There is no opt-in and no paywall\u200a\u2014\u200ajust a practical starting point for teams '
-         f'ready to move from open-based assumptions to intent-based classification.',
-         sCalloutNormal),
-    ]
-    story.append(callout(tool_callout_texts, avail_w))
-
+    # (APPROACH A free-tool callout removed 2026-07-30)
     # ══════════════════════════════════════════════════════════
     # SECTION 5
     # ══════════════════════════════════════════════════════════
@@ -809,24 +798,8 @@ def build():
     story.append(sp(16))
 
     # ══════════════════════════════════════════════════════════
-    # APPROACH C — "Put This Into Practice" (hidden link)
+    # (APPROACH C "Put This Into Practice" free-tool section removed 2026-07-30)
     # ══════════════════════════════════════════════════════════
-    story.append(TealRule(avail_w))
-    story.append(sp(16))
-    story.append(Paragraph("Put This Into Practice", sH2))
-    story.append(sp(10))
-    story.append(p(
-        "The ideas in this paper become useful when you apply them to your own subscriber data. "
-        "To make that starting point easier, we built a free tool that walks you through the A/B/C "
-        "classification framework described in Section 4."
-    ))
-    story.append(sp(4))
-    story.append(p(
-        f'There is no opt-in, no paywall, and no sales pitch. It exists to help working marketers '
-        f'put classification discipline into practice.  '
-        f'<a href="{TOOL_URL}" color="{LINK_COLOR.hexval()}">Access the free tool here.</a>'
-    ))
-    story.append(sp(16))
 
     # ══════════════════════════════════════════════════════════
     # REFERENCES (kept together to prevent orphaned refs)
@@ -857,8 +830,8 @@ def build():
     story.append(sp(6))
 
     story.append(p(
-        "Chuck Mullaney brings 25 years of digital marketing expertise, with 15 years dedicated exclusively to email "
-        "marketing and inbox deliverability. He has architected six email platforms: two public facing systems that "
+        "Chuck Mullaney brings 25 years of digital marketing expertise, with 17 years dedicated exclusively to email "
+        "marketing and 16 years focused on inbox deliverability. He has architected six email platforms: two public facing systems that "
         "achieved significant market adoption, and four proprietary platforms built for private clients."
     ))
     story.append(sp())
